@@ -1,5 +1,7 @@
 <template>
   <div>
+    
+ 
     <Home />
   </div>
  
@@ -9,11 +11,16 @@
 import { defineComponent } from 'vue';
 import Home from './components/Home.vue';
 
+
 export default defineComponent({
   name: 'App',
   components: {
     Home,
 
+  },
+  methods: {
+    
+    
   }
 });
 </script>
@@ -32,5 +39,6 @@ body {
   background-color: black;
 
 }
+
 
 </style>

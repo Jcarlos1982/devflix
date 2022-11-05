@@ -16,6 +16,7 @@ export interface Filme {
   tipo?: string;
   poster?: string;
 }
+
 let filme: Filme = {
   title: "Iron Man",
   lancamento: "24 Sep 1994",
@@ -36,3 +37,4 @@ let filme: Filme = {
 
 };
 export { filme };
+

@@ -1,11 +1,11 @@
 <template>
   <header>
-    <input type="search" :value="nome" @change="teste" />
+    <input type="search" v-model="filme" @change="buscar(filme)"/>
   </header>
 
   <div>
-    <Sessao />
-    <Sessao />
+    <Sessao :listaFilmes=listaFilmes />
+    <!-- <Sessao /> -->
   </div>
 </template>
 
@@ -13,6 +13,7 @@
 import { defineComponent } from "vue";
 import Card from "./Card.vue";
 import Sessao from "./Sessao.vue";
+import teste from '../data/remote/FilmeService';
 
 export default defineComponent({
   name: "home",
@@ -23,11 +24,21 @@ export default defineComponent({
   data() {
     return {
       nome: "Zeca",
+      filme: "",
+      listaFilmes: []
     };
   },
   methods: {
-    teste() {
-      console.log(this.nome);
+
+    buscar(texto: string){
+      console.log(texto)
+
+      teste(texto).then((response)=>{
+       this.listaFilmes = response.data.Search
+  
+        console.log(this.listaFilmes)
+        // console.log(response.data.Search)
+      }).catch((error) => { console.log(error)})
     },
   },
 });
@@ -53,6 +64,11 @@ input {
   border-radius: 8px;
   text-align: center;
   margin: 10px;
+}
+#buscar {
+ margin-top: 30px;
+ height: 38px;
+ width: 130px;
 }
 
 </style>
