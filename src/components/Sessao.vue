@@ -1,9 +1,9 @@
 <template>
   <header>
-    <!-- <h3>{{  }}</h3> -->
+    <h3>{{ listaFilmes }}</h3>
   </header>
   <div class="sessao">
-    <Card :props=f v-for="f in listaFilmes" :key="f" />
+    <!-- <Card :props=filme v-for="filme in listaFilmes" :key="filme.title" /> -->
     <p>{{ listaFilmes }}</p>
   </div>
 </template>
@@ -11,11 +11,9 @@
 <script lang="ts">
 
 
-
+import { Filme } from "@/model/filme";
 import { defineComponent } from "vue";
 import Card from "./Card.vue";
-
-
 
 export default defineComponent({
   name: "Sessao",

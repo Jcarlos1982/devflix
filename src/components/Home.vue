@@ -4,7 +4,8 @@
   </header>
 
   <div>
-    <Sessao :listaFilmes=listaFilmes />
+  
+    <Sessao :listaFilmes="listaFilmes" />
     <!-- <Sessao /> -->
   </div>
 </template>
@@ -14,6 +15,9 @@ import { defineComponent } from "vue";
 import Card from "./Card.vue";
 import Sessao from "./Sessao.vue";
 import teste from '../data/remote/FilmeService';
+import { Filme } from '../model/filme';
+
+let lista: Filme[]
 
 export default defineComponent({
   name: "home",
@@ -25,7 +29,7 @@ export default defineComponent({
     return {
       nome: "Zeca",
       filme: "",
-      listaFilmes: []
+      listaFilmes: lista
     };
   },
   methods: {
@@ -34,10 +38,18 @@ export default defineComponent({
       console.log(texto)
 
       teste(texto).then((response)=>{
-       this.listaFilmes = response.data.Search
+        
+        var lista: Filme[] = []
+        response.data.Search.forEach((e: Filme)  => {
+          const filme: Filme = {
+            title: e.title
+          }
+          lista.push(filme)
+        });
+
+       this.listaFilmes = lista
   
         console.log(this.listaFilmes)
-        // console.log(response.data.Search)
       }).catch((error) => { console.log(error)})
     },
   },
