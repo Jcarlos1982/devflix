@@ -1,5 +1,6 @@
 <template>
   <header>
+    <h1>DevFlix</h1>
     <input type="search" v-model="buscaAtual" @change="buscarTitulos" />
   </header>
 
@@ -50,6 +51,13 @@ header {
   position: fixed;
   top: 3%;
   width: 100%;
+}
+
+header h1 {
+  font-size: 30px;
+  top: 1%;
+  color: red;
+  /* margin-bottom: -50px; */
 }
 
 div {
