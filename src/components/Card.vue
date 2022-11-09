@@ -2,8 +2,11 @@
   <div class="card">
     <img id="poster" :src="filme?.poster !== 'N/A' ? filme?.poster : posterPadrao" />
     
-    <h4>Ano: {{ filme?.year }}</h4>
-    <h4>{{ filme?.tipo?.toUpperCase() }}</h4>
+    <div id="ano">
+      <h4>Ano: {{ filme?.year }}</h4>
+      <h4>{{ filme?.tipo?.toUpperCase() }}</h4>
+    </div>
+    
     
     <h1>{{ filme?.title }}</h1>
   </div>
@@ -39,8 +42,12 @@ export default defineComponent({
 
 h1 {
   text-align: start;
+  color: antiquewhite
 }
 
+#ano {
+  color: white;
+}
 #poster {
   border-radius: 10px;
 }
