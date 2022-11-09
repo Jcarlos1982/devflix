@@ -1,12 +1,11 @@
 <template>
-  <div class="card" id="img">
-    <h1> {{filme}} </h1>
-    fasfa
-    <!-- <img
-      id="poster"
-      src={{filme}}
-    /> -->
-    <p>{{ filme }}</p>
+  <div class="card">
+    <img id="poster" :src="filme?.poster !== 'N/A' ? filme?.poster : posterPadrao" />
+    
+    <h4>Ano: {{ filme?.year }}</h4>
+    <h4>{{ filme?.tipo?.toUpperCase() }}</h4>
+    
+    <h1>{{ filme?.title }}</h1>
   </div>
 </template>
 
@@ -14,35 +13,32 @@
 import { Filme } from "@/model/filme";
 import { defineComponent } from "vue";
 
-
 export default defineComponent({
   name: "Card",
-  mounted(){
-    if(this.filme){
-      console.log(this.filme)
-    }
-   
-    console.log(this.filme)
-  },
- 
-  props:{
-    filme: Filme
+  components: {},
+
+  props: {
+    filme: Filme,
   },
   data() {
-
     return {
-      
+      posterPadrao: "https://upload.wikimedia.org/wikipedia/commons/8/8d/Unisinos_symbol_and_logo_%28vertical%29.svg"
     };
-    
   },
-  components: {},
- 
 });
 </script>
 
 <style scoped>
 .card {
-  margin: 10px;
+  margin: 20px;
+}
+
+.card h4 {
+  text-align: left;
+}
+
+h1 {
+  text-align: start;
 }
 
 #poster {
