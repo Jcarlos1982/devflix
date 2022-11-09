@@ -1,12 +1,11 @@
 <template>
   <header>
-    <input type="search" v-model="filme" @change="buscar(filme)"/>
+    <input type="search" v-model="buscaAtual" @change="buscarTitulos" />
   </header>
 
   <div>
-  
-    <Sessao :listaFilmes="listaFilmes" />
-    <!-- <Sessao /> -->
+    <Sessao v-if="isReady" :titulo="buscaAtual" />
+    <Sessao v-else :titulo="buscaAnterior" />
   </div>
 </template>
 
@@ -14,10 +13,6 @@
 import { defineComponent } from "vue";
 import Card from "./Card.vue";
 import Sessao from "./Sessao.vue";
-import teste from '../data/remote/FilmeService';
-import { Filme } from '../model/filme';
-
-let lista: Filme[]
 
 export default defineComponent({
   name: "home",
@@ -25,32 +20,25 @@ export default defineComponent({
     Card,
     Sessao,
   },
+
   data() {
     return {
-      nome: "Zeca",
-      filme: "",
-      listaFilmes: lista
+      buscaAnterior: "",
+      buscaAtual: "",
+      isReady: false,
     };
   },
+
+  updated() {
+    this.isReady = false;
+  },
+
   methods: {
-
-    buscar(texto: string){
-      console.log(texto)
-
-      teste(texto).then((response)=>{
-        
-        var lista: Filme[] = []
-        response.data.Search.forEach((e: Filme)  => {
-          const filme: Filme = {
-            title: e.title
-          }
-          lista.push(filme)
-        });
-
-       this.listaFilmes = lista
-  
-        console.log(this.listaFilmes)
-      }).catch((error) => { console.log(error)})
+    buscarTitulos() {
+      if (this.buscaAnterior !== this.buscaAtual) {
+        this.buscaAnterior = this.buscaAtual;
+        this.isReady = true;
+      } 
     },
   },
 });
@@ -78,10 +66,9 @@ input {
   margin: 10px;
 }
 #buscar {
- margin-top: 30px;
- height: 38px;
- width: 130px;
+  margin-top: 30px;
+  height: 38px;
+  width: 130px;
 }
-
 </style>
 

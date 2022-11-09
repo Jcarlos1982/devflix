@@ -1,6 +1,7 @@
 <template>
   <div class="card" id="img">
     <h1> {{filme}} </h1>
+    fasfa
     <!-- <img
       id="poster"
       src={{filme}}
@@ -10,19 +11,22 @@
 </template>
 
 <script lang="ts">
+import { Filme } from "@/model/filme";
 import { defineComponent } from "vue";
 
 
 export default defineComponent({
   name: "Card",
-  mounted:()=>{
-    console.log('Criado ')
-    // console.log(filme)
+  mounted(){
+    if(this.filme){
+      console.log(this.filme)
+    }
+   
+    console.log(this.filme)
   },
  
-  components: {},
   props:{
-    filme: {}
+    filme: Filme
   },
   data() {
 
@@ -31,6 +35,7 @@ export default defineComponent({
     };
     
   },
+  components: {},
  
 });
 </script>
