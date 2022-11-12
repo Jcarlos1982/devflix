@@ -19,7 +19,7 @@
   imdbID?: string
 }
 
-class  Nota implements NotaInterface {
+class Nota implements NotaInterface {
   fonte?: string;
   valor?: string;
 }
@@ -39,3 +39,4 @@ export class Filme implements FilmeInterface  {
   poster?: string;
   imdbID?: string
 }
+

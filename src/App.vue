@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Home from './components/Home.vue';
+import Home from './views/Home.vue';
 
 
 export default defineComponent({
@@ -30,8 +30,6 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #d5dce3;
-  margin-top: 60px
-
 }
 body {
   background-color: black;

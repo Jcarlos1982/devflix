@@ -17,7 +17,9 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Card",
-  components: {},
+  components: {
+    
+  },
 
   props: {
     filme: Filme,
@@ -35,11 +37,6 @@ export default defineComponent({
   margin-left: 30px;
 }
 
-.card h1 {
-  margin-top: -15px;
-  
-}
-
 .card h4 {
   text-align: left;
 }
@@ -54,7 +51,7 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: -20px;
+
 
 }
 

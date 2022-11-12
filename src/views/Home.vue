@@ -13,7 +13,10 @@
     </div>
 
     </div>
+   
     <input id="busca" type="search" v-model="titulo" @keyup.enter="buscarTitulos" />
+ 
+  
   </header>
 
 
@@ -24,8 +27,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Card from "./Card.vue";
-import Sessao from "./Sessao.vue";
+import Card from "../components/Card.vue";
+import Sessao from "../components/Sessao.vue";
 
 export default defineComponent({
   name: "home",
@@ -97,17 +100,21 @@ div {
   text-align: center;
   margin: 10px;
   height: 38px;
+  background-color: antiquewhite;
 }
 
 #filmes , #series {
-  margin-left: 10  px;
-  margin-right: 10  px;
+  margin-left: 20  px;
+  margin-right: 20  px;
   text-align: center;
 }
 
 @media screen and (max-width: 650px) {
   #busca {
     width: 80%;
+ 
+    
+    
   }
 }
 </style>

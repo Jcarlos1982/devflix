@@ -1,28 +1,33 @@
 <template>
-  <header>
   
-  </header>
-  <div class="sessao">
-    <p v-if="isError">Não há títulos</p>
+  <div class="sessao">    
+    
     <Card
-      v-else
+      v-if="!isError"
       :filme="filme"
       v-for="(filme, index) in listaFilmes"
-      :key="index"
+      :key="index" @click="buscarimdbID(filme.imdbID ?? '')"
     />
+    <dialog v-if="filmeImdb.imdbID" open>
+      <Info  :filme="filmeImdb" @fecharDialogo="fecharDialogo" />
+    </dialog>
+    
   </div>
+  <div id="erro" v-if="isError">Não há títulos</div>
 </template>
 
 <script lang="ts">
 import { Filme } from "@/model/filme";
 import { defineComponent } from "vue";
 import Card from "./Card.vue";
-import teste from "../data/remote/FilmeService";
+import Info from "./Info.vue";
+import {buscarFilmesPorNome, buscarFilmesPorimdbID} from "../data/remote/FilmeService";
 
 export default defineComponent({
   name: "Sessao",
   components: {
     Card,
+    Info
   },
   
   mounted() {
@@ -49,12 +54,13 @@ export default defineComponent({
   data() {
     return {
       listaFilmes: Array<Filme>(),
+      filmeImdb: new Filme(),
       isError: false,
     };
   },
   methods: {
     async buscar(texto: string, tipo: string) {      
-      await teste(texto, tipo)
+      await buscarFilmesPorNome(texto, tipo)
         .then((response) => {
           response.data.Search.forEach((e: any) => {
             const filme: Filme = {
@@ -81,6 +87,40 @@ export default defineComponent({
           this.isError = true;
         });
     },
+
+    async buscarimdbID(imdbID: string) {      
+      
+      await buscarFilmesPorimdbID(imdbID)
+        .then((response) => {
+          const data = response.data
+    
+            const filme: Filme = {
+              title: data.Title,
+              year: data.Year,
+              lancamento: data.Released,
+              tempo: data.Runtime,
+              genero: data.Genre,
+              diretor: data.Director,
+              sinopse: data.Plot,
+              linguagem: data.Language,
+              pais: data.Country,
+              notas: data.Ratings,              
+              tipo: data.Type,
+              poster: data.Poster,
+              imdbID: data.imdbID,
+            };
+           
+           this.filmeImdb = filme
+
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    fecharDialogo(){
+      this.filmeImdb = new Filme()
+    }
   },
 });
 </script>
@@ -88,11 +128,18 @@ export default defineComponent({
 <style scoped>
 
 .sessao {
-  margin-top: 150px;
+  margin-top: 170px;
   bottom: 0%;
   max-width: 95%;
   display: flex;
   flex-direction: row;
   overflow-x: auto;
+}
+
+#erro {
+  width: 100%;
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
 }
 </style>
