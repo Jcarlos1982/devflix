@@ -3,7 +3,7 @@
     <img id="poster" :src="filme?.poster !== 'N/A' ? filme?.poster : posterPadrao" />
     
     <div id="ano">
-      <h4>{{ filme?.tipo?.toUpperCase() }}</h4>
+      <h4>{{ filme?.tipo?.charAt(0).toUpperCase().concat(filme?.tipo?.slice(1)) }}</h4>
       <h4>Ano: {{ filme?.year }}</h4>
     </div>
       

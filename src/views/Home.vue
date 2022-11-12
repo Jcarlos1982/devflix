@@ -112,9 +112,6 @@ div {
 @media screen and (max-width: 650px) {
   #busca {
     width: 80%;
- 
-    
-    
   }
 }
 </style>

@@ -8,7 +8,7 @@
       v-for="(filme, index) in listaFilmes"
       :key="index" @click="buscarimdbID(filme.imdbID ?? '')"
     />
-    <dialog v-if="filmeImdb.imdbID" open>
+    <dialog id="dialog" v-if="filmeImdb.imdbID" open>
       <Info  :filme="filmeImdb" @fecharDialogo="fecharDialogo" />
     </dialog>
     
@@ -44,7 +44,6 @@ export default defineComponent({
 
       this.buscar(titulo, tipo);
 
-    
   },
 
   props: {
@@ -73,11 +72,11 @@ export default defineComponent({
               sinopse: e.Plot,
               linguagem: e.Language,
               pais: e.Country,
-              notas: e.Ratings,              
               tipo: e.Type,
               poster: e.Poster,
               imdbID: e.imdbID,
             };
+
             this.listaFilmes.push(filme);
           });
           this.isError = false;
@@ -103,8 +102,7 @@ export default defineComponent({
               diretor: data.Director,
               sinopse: data.Plot,
               linguagem: data.Language,
-              pais: data.Country,
-              notas: data.Ratings,              
+              pais: data.Country,            
               tipo: data.Type,
               poster: data.Poster,
               imdbID: data.imdbID,
@@ -141,5 +139,12 @@ export default defineComponent({
   margin-top: 150px;
   display: flex;
   justify-content: center;
+}
+
+#dialog {
+  width: 100%;
+  height: 100%;
+  opacity: 0.95;
+  background-color: black;
 }
 </style>
