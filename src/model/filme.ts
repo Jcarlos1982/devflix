@@ -39,19 +39,3 @@ export class Filme implements FilmeInterface  {
   poster?: string;
   imdbID?: string
 }
-
-
-// const filme: Filme = {
-//   title: e.Title,
-//   lancamento: e.Released,
-//   tempo: e.Runtime,
-//   genero: e.Genre,
-//   diretor: e.Director,
-//   sinopse: e.Plot,
-//   linguagem: e.Language,
-//   pais: e.Country,
-//   notas: e.Ratings,              
-//   tipo: e.Type,
-//   poster: e.Poster,
-//   imdbID: e.imdbID,
-// };

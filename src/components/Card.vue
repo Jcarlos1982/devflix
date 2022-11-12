@@ -3,11 +3,10 @@
     <img id="poster" :src="filme?.poster !== 'N/A' ? filme?.poster : posterPadrao" />
     
     <div id="ano">
-      <h4>Ano: {{ filme?.year }}</h4>
       <h4>{{ filme?.tipo?.toUpperCase() }}</h4>
+      <h4>Ano: {{ filme?.year }}</h4>
     </div>
-    
-    
+      
     <h1>{{ filme?.title }}</h1>
   </div>
 </template>
@@ -33,7 +32,12 @@ export default defineComponent({
 
 <style scoped>
 .card {
-  margin: 20px;
+  margin-left: 30px;
+}
+
+.card h1 {
+  margin-top: -15px;
+  
 }
 
 .card h4 {
@@ -47,8 +51,18 @@ h1 {
 
 #ano {
   color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: -20px;
+
 }
+
 #poster {
   border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  height: 80%;
+  width: 300px;
 }
 </style>

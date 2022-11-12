@@ -74,7 +74,7 @@ export default defineComponent({
 header {
   font-size: 30px;
   color: blanchedalmond;
-  margin-bottom: 150px;
+  margin-top: 850px;
 }
 
 .sessao {

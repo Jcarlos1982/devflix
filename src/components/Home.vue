@@ -1,8 +1,20 @@
 <template>
+
   <header>
     <h1>DevFlix</h1>
-    <input type="search" v-model="buscaAtual" @change="buscarTitulos" />
+    <div>
+      <div id="filmes">
+      <input id="filmes" type="checkbox"  checked >
+      <label>Filmes</label>
+    </div>
+    <div id="series">
+      <input id="series" type="checkbox" checked />
+      <label>Séries</label>
+    </div>
+    </div>
+    <input id="busca" type="search" v-model="buscaAtual" @change="buscarTitulos" />
   </header>
+
 
   <div>
     <Sessao v-if="isReady" :titulo="buscaAtual" />
@@ -27,6 +39,7 @@ export default defineComponent({
       buscaAnterior: "",
       buscaAtual: "",
       isReady: false,
+      largura: window.screen.width
     };
   },
 
@@ -39,7 +52,7 @@ export default defineComponent({
       if (this.buscaAnterior !== this.buscaAtual) {
         this.buscaAnterior = this.buscaAtual;
         this.isReady = true;
-      } 
+      }
     },
   },
 });
@@ -49,34 +62,43 @@ export default defineComponent({
 <style  scoped>
 header {
   position: fixed;
-  top: 3%;
+  top: 0%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header h1 {
   font-size: 30px;
-  top: 1%;
   color: red;
-  /* margin-bottom: -50px; */
 }
 
 div {
   display: flex;
   align-items: center;
-  flex-direction: column;
 }
-input {
-  width: 500px;
+
+#busca {
+  width: 40%;
   height: 40px;
   font-size: 20px;
   border-radius: 8px;
   text-align: center;
   margin: 10px;
-}
-#buscar {
-  margin-top: 30px;
   height: 38px;
-  width: 130px;
+}
+
+#filmes , #series {
+  margin-left: 10  px;
+  margin-right: 10  px;
+  text-align: center;
+}
+
+@media screen and (max-width: 650px) {
+  #busca {
+    width: 80%;
+  }
 }
 </style>
 
