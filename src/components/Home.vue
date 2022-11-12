@@ -4,21 +4,21 @@
     <h1>DevFlix</h1>
     <div>
       <div id="filmes">
-      <input id="filmes" type="checkbox"  checked >
+      <input id="filmes" type="checkbox"  v-model="filtroFilmes">
       <label>Filmes</label>
     </div>
     <div id="series">
-      <input id="series" type="checkbox" checked />
+      <input id="series" type="checkbox" v-model="filtroSeries"/>
       <label>Séries</label>
     </div>
+
     </div>
-    <input id="busca" type="search" v-model="buscaAtual" @change="buscarTitulos" />
+    <input id="busca" type="search" v-model="titulo" @keyup.enter="buscarTitulos" />
   </header>
 
 
   <div>
-    <Sessao v-if="isReady" :titulo="buscaAtual" />
-    <Sessao v-else :titulo="buscaAnterior" />
+    <Sessao v-if="isReady" :titulo="titulo" :tipoFiltro="tipoFiltro" />    
   </div>
 </template>
 
@@ -36,24 +36,34 @@ export default defineComponent({
 
   data() {
     return {
-      buscaAnterior: "",
-      buscaAtual: "",
+      titulo: "",
       isReady: false,
-      largura: window.screen.width
+      filtroFilmes: true,
+      filtroSeries: true, 
+      tipoFiltro: ""
     };
   },
 
   updated() {
-    this.isReady = false;
+    this.isReady = true;
   },
 
   methods: {
     buscarTitulos() {
-      if (this.buscaAnterior !== this.buscaAtual) {
-        this.buscaAnterior = this.buscaAtual;
-        this.isReady = true;
+      this.isReady = false;
+      
+      if(this.filtroFilmes === this.filtroSeries){
+        this.tipoFiltro = ""
+      }
+      else{
+        if(this.filtroFilmes) {
+          this.tipoFiltro = "movie"
+        }else{
+          this.tipoFiltro = "series"
+        }
       }
     },
+
   },
 });
 </script >

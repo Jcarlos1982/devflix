@@ -1,6 +1,6 @@
 <template>
   <header>
-    
+  
   </header>
   <div class="sessao">
     <p v-if="isError">Não há títulos</p>
@@ -24,12 +24,27 @@ export default defineComponent({
   components: {
     Card,
   },
+  
   mounted() {
-    if (this.titulo) this.buscar(this.titulo);
+  
+    let titulo = ""
+    let tipo = ""
+
+    if (this.titulo){
+      titulo = this.titulo
+    }
+    if (this.tipoFiltro){
+      tipo = this.tipoFiltro
+    }
+
+      this.buscar(titulo, tipo);
+
+    
   },
 
   props: {
     titulo: String,
+    tipoFiltro: String,
   },
   data() {
     return {
@@ -38,8 +53,8 @@ export default defineComponent({
     };
   },
   methods: {
-    async buscar(texto: string) {
-      await teste(texto)
+    async buscar(texto: string, tipo: string) {      
+      await teste(texto, tipo)
         .then((response) => {
           response.data.Search.forEach((e: any) => {
             const filme: Filme = {
@@ -71,13 +86,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-header {
-  font-size: 30px;
-  color: blanchedalmond;
-  margin-top: 850px;
-}
 
 .sessao {
+  margin-top: 150px;
+  bottom: 0%;
   max-width: 95%;
   display: flex;
   flex-direction: row;

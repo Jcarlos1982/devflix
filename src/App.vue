@@ -30,7 +30,7 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #d5dce3;
-  margin-top: 60px;
+  margin-top: 60px
 
 }
 body {
