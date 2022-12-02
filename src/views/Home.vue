@@ -55,6 +55,7 @@ export default defineComponent({
     buscarTitulos() {
       this.isReady = false;
       
+      //Configura o filtro de filmes e séries
       if(this.filtroFilmes === this.filtroSeries){
         this.tipoFiltro = ""
       }
@@ -109,6 +110,8 @@ div {
   text-align: center;
 }
 
+
+/* Mobile */
 @media screen and (max-width: 650px) {
   #busca {
     width: 80%;

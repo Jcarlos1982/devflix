@@ -17,12 +17,12 @@
             <h4> {{ filme?.genero }} </h4>
             <h4 v-if="filme?.sinopse != 'N/A'"> {{ filme?.sinopse }} </h4>
 
-    
+
             <a :href="linkYoutube + filme?.title + trailler" target="_blank">
                 <input class="button" type="button" value="Buscar trailler" />
             </a><br>
 
-            <input class="button" type="button" value="Fehcar"  @click="$emit('fecharDialogo')"/>
+            <input class="button" type="button" value="Fehcar" @click="$emit('fecharDialogo')" />
         </div>
 
     </div>
@@ -43,15 +43,13 @@ export default defineComponent({
     data() {
         return {
             linkYoutube: "https://www.youtube.com/results?search_query=",
-            trailler: " trailler"
-
+            trailler: "trailler"
         };
     },
 });
 </script>
   
 <style scoped>
-
 .dialogo {
     display: flex;
     flex-direction: row;
@@ -108,9 +106,69 @@ h4 {
     text-align: center;
 }
 
-@media screen and (max-width: 650px) {
-    #busca {
-        /* width: 80%; */
+
+/* Mobile */
+@media screen and (max-width: 750px) {
+    .dialogo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 30px;
+        width: 100%;
+        height: 100%;
+    }
+
+    h4 {
+        text-align: left;
+    }
+
+    .info {
+        margin-top: -40px;
+        text-align: center;
+        color: antiquewhite;
+        font-size: 25px;
+        width: 60%;       
+    }
+
+    .info h1 {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    #fichaTecnica {
+        color: white;
+        display: flex;
+        margin-top: -80px;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #fichaTecnica h4 {
+        padding-right: 10px;
+    }
+
+    #poster {
+        border-radius: 10px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: aliceblue;
+        height: 80%;
+        width: 60%;
+        margin-right: 20px;
+    }
+
+    .button {
+        width: 50%;
+        height: 40px;
+        border-radius: 8px;
+        margin: 10px;
+        font-weight: bold;
+        padding: 5px;
+        font-size: 20px;
+        text-align: center;
+        
     }
 }
 </style>

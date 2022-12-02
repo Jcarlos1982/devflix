@@ -4,7 +4,7 @@ import axios from "axios";
 const apiKey = '75ec9f5d'
 
 
-//Recupera um filme pelo seu título
+//Recupera uma lista de filmes pelo seu título
 export async function buscarFilmesPorNome(nome: string = '', type: string = '') {
   return axios.get('http://www.omdbapi.com', {
     params: {
